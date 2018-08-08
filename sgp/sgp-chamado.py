@@ -55,7 +55,7 @@ class WebService:
             datareq['cpfcnpj'] = data_json.get('cpfCnpj')
             datareq['contrato'] = data_json.get('contratoId')
             datareq['motivoos'] = '40'
-            datareq['ocorrenciatipo'] = '3'
+            datareq['ocorrenciatipo'] = '1'
             resposta = ''
             r = requests.post('http://10.10.10.1:8000/ws/ura/chamado/',data=datareq)
             rws = r.json()
