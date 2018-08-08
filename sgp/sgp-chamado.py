@@ -59,11 +59,10 @@ class WebService:
             resposta = ''
             r = requests.post('http://10.10.10.1:8000/ws/ura/chamado/',data=datareq)
             rws = r.json()
-            if rws.get('msg'):
-                if rws.get('protocolo'):
-                    resposta += '\nChamado aberto com sucesso. Protocolo: %s' %(rws.get('protocolo'))
-                else:
-                    resposta += rws.get('msg')
+            if rws.get('protocolo'):
+                resposta += '\nChamado aberto com sucesso. Protocolo: %s' %(rws.get('protocolo'))
+            else:
+                resposta += rws.get('msg')
             return {'message': resposta }
         else:
             return {'message': 'Erro no processamento. Favor identifique-se novamente digitando a opção #ajuda'}
