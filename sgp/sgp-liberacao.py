@@ -8,17 +8,29 @@ import sys
 
 class WebService:
 
+    def __init__(self):
+        self.TOKEN = 'TOKEN_AQUI'
+        self.APP = 'whatsapp'
+        self.WS_HOST = 'http://10.10.10.10:8000'
+        self.WS_PATH = '/ws/ura/liberacaopromessa/'
+        self.WS_URL = '%s/%s' %(self.WS_HOST,self.WS_PATH)
+
+    def updatews(self,data_json):
+        if data_json.get('TOKEN'):
+            self.TOKEN = data_json.get('TOKEN')
+        if data_json.get('APP'):
+            self.APP = data_json.get('APP')
+        if data_json.get('WS_URL'):
+            self.WS_URL = data_json.get('WS_URL')
+        if data_json.get('WS_HOST'):
+            self.WS_URL = '%s%s' %(data_json.get('WS_HOST'),self.WS_PATH)
+
     def run(self, q, **kwargs):
 
         reload(sys)
         sys.setdefaultencoding('utf-8')
 
-        TOKEN = 'TOKEN_AQUI'
-        APP = 'whatsapp'
-
         datareq = {}
-        datareq['token'] = TOKEN
-        datareq['app'] = APP
         data_json = {}
         try:
             data = kwargs.get('data')
@@ -29,8 +41,12 @@ class WebService:
             datareq['cpfcnpj'] = data_json.get('cpfCnpj')
             datareq['contrato'] = data_json.get('contratoId')
             resposta = ''
-            r = requests.post(
-                'http://10.10.10.10:8000/ws/ura/promessapagamento', data=datareq)
+
+            self.updatews(data_json)
+            datareq['token'] = self.TOKEN
+            datareq['app'] = self.APP
+
+            r = requests.post(self.WS_URL, data=datareq)
             rws = r.json()
             if rws.get('status') is not None:
                 if rws.get('status') == 1:
