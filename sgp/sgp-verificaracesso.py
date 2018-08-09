@@ -13,7 +13,7 @@ class WebService:
         self.APP = 'whatsapp'
         self.WS_HOST = 'http://10.10.10.10:8000'
         self.WS_PATH = '/ws/ura/verificaacesso/'
-        self.WS_URL = '%s/%s' %(self.WS_HOST,self.WS_PATH)
+        self.WS_URL = '%s%s' %(self.WS_HOST,self.WS_PATH)
 
     def updatews(self,data_json):
         if data_json.get('TOKEN'):
