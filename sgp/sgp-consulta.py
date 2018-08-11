@@ -68,8 +68,8 @@ class WebService:
                 # descomentar abaixo se quiser consultar outros sistemas caso nao encontre o cliente
                 #if not kwargs.get('next_ws'):
                 #    # consultar outra empresa 
-                #    self.TOKEN = '  2eb7a1c4-da1c-4fc8-9226-2ab239e6f4be'
-                #    self.WS_HOST = 'http://143.0.220.21:8000'
+                #    self.TOKEN = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx'
+                #    self.WS_HOST = 'http://XXX.XXX.XXX.XXX:8000'
                 #    kwargs['next_ws'] = True
                 #    return self.run(q,**kwargs)
                 return {'message': 'Não localizamos o cliente com as informações informadas'}
